@@ -98,7 +98,8 @@ def create_window1():
         labels=[]
 
         results_im=[]
-        final_results=[]
+        global final_results1
+        final_results1=[]
         global TH1
         #os.system(which_im.get(x))
         for a_file in selected: #get the file name based on the indeces
@@ -147,15 +148,21 @@ def create_window1():
                     results_im.append(TH1)
 
                     results="Image ID: "+ str(results_im[0]) + "-- Cell count: " + str(results_im[1]) + " -- Average cell size: "+ str(results_im[2])+ "-- Threshold used: "+ str(results_im[3]) + "\n"
-                    final_results.append(results)  #append all the results-strings into final list
+                    final_results1.append(results)  #append all the results-strings into final list
                     results_im.clear()
                     entry.delete(0, tk.END)
                     entry.insert(0, "")
 
         lbl_one_im.config(text=imagename)
-        lbl_outp.config(text=final_results)
+        lbl_outp.config(text=final_results1)
         
-        
+    def Output():
+        with open("Images_output.txt", "w") as outp:
+            print(final_results1)
+           # for line in final_results:
+            outp.write('\n'.join(final_results1))
+        lbl_info1.config(text="Output saved to: "+ directory + " !")
+
     btn_stats_a = tk.Button(   #btn_stats_a used if chose option a) --- use of own threshold
         master=w1,
         text="Apply own threshold",
@@ -168,6 +175,12 @@ def create_window1():
     lbl_outpTHs = tk.Label(master=w1, text="")
     recommend_TH=tk.Button(master=w1, text="Get recommended THs", command=pre_ImageStats_a)
     lbl_one_im=tk.Label(master=w1, text="")
+    
+    btn_outp_a=tk.Button(master=w1, text="Save the output", command=Output)
+    lbl_outp_a = tk.Label(master=w1, text="")
+
+    lbl_info1=tk.Label(master=w1, text="")
+
     btn_stats_a.pack()
     recommend_TH.pack()
     btn_stats_a.pack()
@@ -178,6 +191,11 @@ def create_window1():
     lbl_one_im.pack()
     entry.pack()
     btn_stats_a.pack()
+    
+    btn_outp_a.pack()
+    lbl_outp_a.pack()
+    
+    lbl_info1.pack()
     w1.mainloop()
 
 
@@ -236,12 +254,12 @@ def create_window2(event):
             print(final_results)
            # for line in final_results:
             outp.write('\n'.join(final_results))
-        lbl_info.config(text="Output saved to: "+ directory + "!")
+        lbl_info.config(text="Output saved to: "+ directory + " !")
 
     lbl_choice = tk.Label(master=w, text="Enter own threshold or select automatically defined one based on Otsu's method (recommended)")
     lbl_stats = tk.Label(master=w, text="Stats appear here after you have entered threshold")
     btn_stats_own = tk.Button(master=w, text="Own threshold", command=create_window1)
-    btn_stats_own.bind("<Button-1>", create_window1)
+    btn_stats_own.bind("<Button-1>", create_window1) #brings to a different window for applying own threshold
     btn_stats_b = tk.Button(   #btn_stats_b used if chose option b) --- use of otsu's threshold
         master=w,
         text="Apply Otsu's threshold",
@@ -249,13 +267,14 @@ def create_window2(event):
     )
     lbl_info=tk.Label(master=w, text='')
     btn_outp_b=tk.Button(master=w, text="Save the output", command=Output)
-    lbl_outp = tk.Label(master=w2, text="")
+    lbl_outp = tk.Label(master=w, text="")
     
     btn_stats_own.pack()
     btn_stats_b.pack()
     lbl_choice
     lbl_stats.pack()
     btn_stats_b.pack()
+    btn_outp_b.pack()
     lbl_outp.pack() #####
     lbl_info.pack()
     w2.mainloop()
