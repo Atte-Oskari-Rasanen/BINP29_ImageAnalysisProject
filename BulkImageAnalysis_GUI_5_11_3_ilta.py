@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Mar 15 11:19:44 2021
+
+@author: atter
+"""
+
+
 import tkinter as tk
 from tkinter import filedialog
 import numpy as np
@@ -27,7 +35,7 @@ def UploadAction(event=None):
     global images
     images = {} #dictionary with keys as image IDs and values contain lists consisting of path
     #to the image as well as its respective otsu value
-    global warning_message
+
     for imagefile in os.listdir(directory):  #to go through files in the specific directory
         #print(os.listdir(directory))
         imagepath=directory + "/" + imagefile   #create first of dic values, i.e the path
@@ -101,6 +109,7 @@ def create_window1():
         global final_results1
         final_results1=[]
         global TH1
+        global imagename
         #os.system(which_im.get(x))
         for a_file in selected: #get the file name based on the indeces
             entered=which_im.get(a_file)
@@ -130,6 +139,9 @@ def create_window1():
                     try:
                         TH1 = float(entry.get())
                     except ValueError: #if you get a value error, it will pass
+                        err_mess="Faulty input entered, please enter numeric value"
+                        lbl_outp.config(text=err_mess)
+
                         pass
 
                     # if th.isdigit():
@@ -166,6 +178,10 @@ def create_window1():
     btn_stats_a = tk.Button(   #btn_stats_a used if chose option a) --- use of own threshold
         master=w1,
         text="Apply own threshold",
+        width=20,
+        height=3,
+        bg="red",
+        fg="black",
         command=ImageStats_a
     )  #this button needs to be applied to each image one by one
     #btn_stats_a.bind("<Button-1>", ImageStats_a)
@@ -173,35 +189,85 @@ def create_window1():
 
     entry = tk.Entry(w1, text="")
     lbl_outpTHs = tk.Label(master=w1, text="")
-    recommend_TH=tk.Button(master=w1, text="Get recommended THs", command=pre_ImageStats_a)
+    recommend_TH=tk.Button(master=w1, text="Get recommended THs", width=20,
+        height=3,
+        command=pre_ImageStats_a)
     lbl_one_im=tk.Label(master=w1, text="")
     
-    btn_outp_a=tk.Button(master=w1, text="Save the output", command=Output)
+    btn_outp_a=tk.Button(master=w1, text="Save the output",width=20,
+        height=3, bg="green", fg="black",
+        command=Output)
     lbl_outp_a = tk.Label(master=w1, text="")
 
     lbl_info1=tk.Label(master=w1, text="")
 
-    btn_stats_a.pack()
-    recommend_TH.pack()
-    btn_stats_a.pack()
+    btn_stats_a.grid(row=0, column=0)
+    lbl_outp.grid(row=1, column=0)
+    lbl_one_im.grid(row=2, column=0)
+    entry.grid(row=3, column=0)
+    lbl_outp_a.grid(row=5, column=0)
+    lbl_info1.grid(row=6, column=0)
     
-    lbl_outp.pack()
-    lbl_outpTHs.pack()
+    recommend_TH.grid(row=0, column=1)
+    lbl_outpTHs.grid(row=2, column= 1)
+    btn_outp_a.grid(row=4, column=0)
+
+    # btn_stats_a.pack()
+    # recommend_TH.pack()
     
-    lbl_one_im.pack()
-    entry.pack()
-    btn_stats_a.pack()
+    # lbl_outp.pack()
+    # lbl_outpTHs.pack()
     
-    btn_outp_a.pack()
-    lbl_outp_a.pack()
+    # lbl_one_im.pack()
+    # entry.pack()
     
-    lbl_info1.pack()
+    # btn_outp_a.pack()
+    # lbl_outp_a.pack()
+    
+    # lbl_info1.pack()
     w1.mainloop()
 
 
 
 def create_window2(event):
     w2 = tk.Toplevel(w)
+    f2=tk.Frame(master=w2, width=100, height=100)
+    f2.pack()
+
+    lbl_choice = tk.Label(master=w, text="Enter own threshold or select one based on Otsu:")
+    btn_stats_own = tk.Button(master=w, text="Apply own threshold",width=20,
+        height=5,
+        bg="red",
+        fg="black",
+command=create_window1)
+
+    btn_stats_own.bind("<Button-1>", create_window1) #brings to a different window for applying own threshold
+    
+    lbl_stats = tk.Label(master=f2, text="")
+    btn_stats_otsu = tk.Button(   #btn_stats_b used if chose option b) --- use of otsu's threshold
+        master=w,
+        text="Apply Otsu's threshold",
+        width=20,
+        height=5,
+        bg="blue",
+        fg="yellow",
+        command=create_window3)
+    #Grids
+    lbl_choice.grid(row=4, column=0)
+    btn_stats_own.grid(row=5, column=0)
+    btn_stats_otsu.grid(row=6, column=0)
+    lbl_stats.grid(row=7, column=0)
+
+
+    # btn_stats_own.pack()
+    # btn_stats_otsu.pack()
+    # lbl_choice
+    # lbl_stats.pack()
+    w2.mainloop()
+
+def create_window3():
+    w3 = tk.Toplevel(w)
+    w3.title("Results using Otsu's method")
 
     def ImageStats_b():
         selected = which_im.curselection() #create indices of the files
@@ -247,7 +313,6 @@ def create_window2(event):
                     final_results.append(results)  #append all the results-strings into final list
                     results_im.clear()
         #return(final_results)
-        # text.delete('1.0', tk.END)
         lbl_outp.config(text=final_results)
     def Output():
         with open("Images_output.txt", "w") as outp:
@@ -256,45 +321,61 @@ def create_window2(event):
             outp.write('\n'.join(final_results))
         lbl_info.config(text="Output saved to: "+ directory + " !")
 
-    lbl_choice = tk.Label(master=w, text="Enter own threshold or select automatically defined one based on Otsu's method (recommended)")
-    lbl_stats = tk.Label(master=w, text="Stats appear here after you have entered threshold")
-    btn_stats_own = tk.Button(master=w, text="Own threshold", command=create_window1)
-    btn_stats_own.bind("<Button-1>", create_window1) #brings to a different window for applying own threshold
-    btn_stats_b = tk.Button(   #btn_stats_b used if chose option b) --- use of otsu's threshold
-        master=w,
-        text="Apply Otsu's threshold",
-        command=ImageStats_b
-    )
+
     lbl_info=tk.Label(master=w, text='')
-    btn_outp_b=tk.Button(master=w, text="Save the output", command=Output)
-    lbl_outp = tk.Label(master=w, text="")
-    
-    btn_stats_own.pack()
-    btn_stats_b.pack()
-    lbl_choice
-    lbl_stats.pack()
-    btn_stats_b.pack()
-    btn_outp_b.pack()
-    lbl_outp.pack() #####
-    lbl_info.pack()
-    w2.mainloop()
+    btn_stats_b = tk.Button(   #btn_stats_b used if chose option b) --- use of otsu's threshold
+        master=w3,
+        text="Apply Otsu's threshold",
+        width=20,
+        height=3,
+        bg="blue",
+        fg="yellow",
+        command=ImageStats_b)
+
+    btn_outp_b=tk.Button(master=w3, text="Save the output", width=20,
+        height=3, bg="green", fg="black",
+ command=Output)
+    lbl_outp = tk.Label(master=w3, text="")
+    ###Grids
+    btn_stats_b.grid(row=0, column=0)
+    btn_outp_b.grid(row=3,column=0)
+    lbl_outp.grid(row=2, column=0)
+    lbl_info.grid(row=4, column=0)
+    # btn_stats_b.pack()
+    # btn_outp_b.pack()
+    # lbl_outp.pack() #####
+    # lbl_info.pack()
+    w3.mainloop()
 
 # theframe=tk.Frame(w,width=400,height=300,bd=2) ####
 
+
 btn1 = tk.Button(master=w, text='Please select an image directory', command=UploadAction)
 lbl_txt = tk.Label(master=w, text="Number of image files in directory:")
-lbl_txt_expl = tk.Label(master=w, text="Please select the images you want to analyse with left mouse click and after you are done click right mouse click")
+lbl_txt_expl = tk.Label(master=w, text="Please select the images you want to analyse with left mouse click and after you are done click right mouse button")
 lbl_numbers = tk.Label(master=w, text="")
 which_im = tk.Listbox(master=w, selectmode=tk.MULTIPLE)      ##########
+
 which_im.bind("<Button-3>", create_window2)   #right button click to proceed
 #cellranges=tk.Listbox(master=w)    ########
+lbl_txt2 = tk.Label(master=w, text="Please select threshold:")
+
+# lbl_txt2.pack()
+
+###Grids
+lbl_txt_expl.grid(row=0, column=0, pady=2)
+btn1.grid(row=1, column=0, pady=2)
+which_im.grid(row = 2, column = 0, pady = 2) 
+lbl_txt.grid(row = 3, column = 0, pady = 2) 
+lbl_numbers.grid(row=4, column= 0)
 
 # theframe.pack() #####
-btn1.pack()
-lbl_txt_expl.pack()
-lbl_txt.pack()
-lbl_numbers.pack()
-which_im.pack()  ########
+# btn1.pack()
+# lbl_txt2.pack()
 
+# lbl_txt_expl.pack()
+# lbl_txt.pack()
+# lbl_numbers.pack()
+# which_im.pack()  ########
 
 w.mainloop()
