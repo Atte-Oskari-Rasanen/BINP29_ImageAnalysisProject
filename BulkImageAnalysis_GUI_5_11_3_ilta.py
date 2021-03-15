@@ -27,7 +27,7 @@ def UploadAction(event=None):
     global images
     images = {} #dictionary with keys as image IDs and values contain lists consisting of path
     #to the image as well as its respective otsu value
-
+    global warning_message
     for imagefile in os.listdir(directory):  #to go through files in the specific directory
         #print(os.listdir(directory))
         imagepath=directory + "/" + imagefile   #create first of dic values, i.e the path
@@ -54,7 +54,7 @@ def UploadAction(event=None):
         Paths_and_TH.clear()
         #now the image should be saved into the dictionary so that it can be used later
     num_of_images= len(images)
-    lbl_numbers.config(text=warning_message)
+    lbl_numbers.config(text=num_of_images)
 def create_window1():
     w1 = tk.Toplevel(w)
     def pre_ImageStats_a():

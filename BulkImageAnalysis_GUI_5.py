@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Mar 10 14:20:55 2021
-
-@author: atter
-"""
-
-
 import tkinter as tk
 from tkinter import filedialog
 import numpy as np
@@ -35,14 +27,14 @@ def UploadAction(event=None):
     global images
     images = {} #dictionary with keys as image IDs and values contain lists consisting of path
     #to the image as well as its respective otsu value
-    
+
     for imagefile in os.listdir(directory):  #to go through files in the specific directory
         #print(os.listdir(directory))
         imagepath=directory + "/" + imagefile   #create first of dic values, i.e the path
-        
+
         #print(imagepath)
         imagename=ntpath.basename(imagepath)#create dic key
-        
+
         #print(imagename)
         #get the threshold
         cells = rgb2gray(imread(imagepath))
@@ -53,7 +45,7 @@ def UploadAction(event=None):
         Paths_and_TH.append(imagepath)  #append the values
         Paths_and_TH.append(TH)
         images[imagename]=Paths_and_TH
-        
+
         Paths_and_TH.clear()
         #now the image should be saved into the dictionary so that it can be used later
     num_of_images= len(images)
@@ -138,7 +130,7 @@ def create_window1():
                     results_im.append(cell_count)
                     results_im.append(Average_size)
                     results_im.append(TH)
-                    
+
                     results="Image ID: "+ str(results_im[0]) + "-- Cell count: " + str(results_im[1]) + " -- Average cell size: "+ str(results_im[2])+ "-- Threshold used: "+ str(results_im[3]) + "\n"
                     final_results.append(results)  #append all the results-strings into final list
                     results_im.clear()
@@ -194,13 +186,13 @@ def create_window2(event):
                     results_im.append(cell_count)
                     results_im.append(Average_size)
                     results_im.append(TH)
-                    
+
                     results="Image ID: "+ str(results_im[0]) + "-- Cell count: " + str(results_im[1]) + " -- Average cell size: "+ str(results_im[2])+ "-- Threshold used: "+ str(results_im[3]) + "\n"
                     final_results.append(results)  #append all the results-strings into final list
                     results_im.clear()
         # text.delete('1.0', tk.END)
         lbl_outp.config(text=final_results)
-        
+
     lbl_choice = tk.Label(master=w, text="Enter own threshold or select automatically defined one based on Otsu's method (recommended)")
     lbl_stats = tk.Label(master=w, text="Stats appear here after you have entered threshold")
     btn_stats_own = tk.Button(master=w, text="Own threshold", command=create_window1())
@@ -211,7 +203,7 @@ def create_window2(event):
         command=ImageStats_b
     )
     lbl_outp = tk.Label(master=w2, text="")
-    
+
     btn_stats_own.pack()
     btn_stats_b.pack()
     lbl_choice
