@@ -21,7 +21,9 @@ import ntpath
 import re
 w = tk.Tk()
 w.title("Fluorescent image analyser")
-
+# style = tk.Style()
+main_title=tk.Label(master=w, text="MonoFluor", bg="yellow", fg="purple")
+main_title.config(font=("Courier", 45))
 
 def UploadAction(event=None):
 # dict with imageid as key and path and otsu as value
@@ -65,6 +67,8 @@ def UploadAction(event=None):
     lbl_numbers.config(text=num_of_images)
 def create_window1():
     w1 = tk.Toplevel(w)
+    w1.title("Results using manually set threshold")
+
     def pre_ImageStats_a():
 #Round1: get the TH values which can be recommended to the user before the user enters his/her own
         selected = which_im.curselection() #create indices of the files
@@ -96,7 +100,11 @@ def create_window1():
                     results="Image ID: "+ str(Imfile_TH[0]) + "-- Threshold used: "+ str(Imfile_TH[1]) + "\n"
                     final_results_TH.append(results)  #######
                     Imfile_TH.clear()
-        lbl_outpTHs.config(text=final_results_TH)
+            results_output_pre=""
+            for item in final_results_TH:
+                results_output_pre += item
+
+        lbl_outpTHs.config(text=results_output_pre)
     
     def ImageStats_a():
         selected = which_im.curselection() #create indices of the files
@@ -141,7 +149,6 @@ def create_window1():
                     except ValueError: #if you get a value error, it will pass
                         err_mess="Faulty input entered, please enter numeric value"
                         lbl_outp.config(text=err_mess)
-
                         pass
 
                     # if th.isdigit():
@@ -164,9 +171,11 @@ def create_window1():
                     results_im.clear()
                     entry.delete(0, tk.END)
                     entry.insert(0, "")
-
+            results_output=""
+            for item in final_results1:
+                results_output += item
         lbl_one_im.config(text=imagename)
-        lbl_outp.config(text=final_results1)
+        lbl_outp.config(text=results_output)
         
     def Output():
         with open("Images_output.txt", "w") as outp:
@@ -209,7 +218,7 @@ def create_window1():
     lbl_info1.grid(row=6, column=0)
     
     recommend_TH.grid(row=0, column=1)
-    lbl_outpTHs.grid(row=2, column= 1)
+    lbl_outpTHs.grid(row=1, column= 1)
     btn_outp_a.grid(row=4, column=0)
 
     # btn_stats_a.pack()
@@ -281,10 +290,7 @@ def create_window3():
         for a_file in selected: #get the file name based on the indeces
             entered=which_im.get(a_file)
             sel_list.append(entered)
-            #print(sel_list) #save selected images (names) into a list
-            # x = which_im.curselection()[0]
-            #f = which_im.get(x)
-            # with open(f, 'r', encoding='utf-8') as f:
+
         for im in sel_list: #go through each image
             #print(im)
             for file in os.listdir(directory): #open the directory and find the filename, then get the path based on this
@@ -313,7 +319,11 @@ def create_window3():
                     final_results.append(results)  #append all the results-strings into final list
                     results_im.clear()
         #return(final_results)
-        lbl_outp.config(text=final_results)
+                results_output2=""
+        for item in final_results:
+            results_output2 += item
+
+        lbl_outp.config(text=results_output2)
     def Output():
         with open("Images_output.txt", "w") as outp:
             print(final_results)
@@ -322,7 +332,7 @@ def create_window3():
         lbl_info.config(text="Output saved to: "+ directory + " !")
 
 
-    lbl_info=tk.Label(master=w, text='')
+    lbl_info=tk.Label(master=w3, text='')
     btn_stats_b = tk.Button(   #btn_stats_b used if chose option b) --- use of otsu's threshold
         master=w3,
         text="Apply Otsu's threshold",
@@ -363,11 +373,13 @@ lbl_txt2 = tk.Label(master=w, text="Please select threshold:")
 # lbl_txt2.pack()
 
 ###Grids
-lbl_txt_expl.grid(row=0, column=0, pady=2)
-btn1.grid(row=1, column=0, pady=2)
-which_im.grid(row = 2, column = 0, pady = 2) 
-lbl_txt.grid(row = 3, column = 0, pady = 2) 
-lbl_numbers.grid(row=4, column= 0)
+main_title.grid(row=0, column=0)
+
+lbl_txt_expl.grid(row=1, column=0, pady=2)
+btn1.grid(row=2, column=0, pady=2)
+which_im.grid(row=3, column = 0, pady = 2) 
+lbl_txt.grid(row=4, column = 0, pady = 2) 
+lbl_numbers.grid(row=5, column= 0)
 
 # theframe.pack() #####
 # btn1.pack()
