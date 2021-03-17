@@ -66,6 +66,7 @@ def UploadAction(event=None): #function for uploading the images from selected d
     global TH
     Paths_and_TH=[]
     global images
+    global warning_message
     images = {} #dictionary with keys as image IDs and values contain lists consisting of path
     #to the image as well as its respective otsu value
 
@@ -73,11 +74,7 @@ def UploadAction(event=None): #function for uploading the images from selected d
         #print(os.listdir(directory))
         imagepath=directory + "/" + imagefile   #create first of dic values, i.e the path
         if not imagefile.endswith('.jpg'): #exclude files not ending in .jpg
-            warning_message="WARNING: The directory contained a file/files that was not in .jpg format! Please remove these files from the directory and try again"
-            #if there is a faulty file, send a warning message and break the loop
-            lbl_numbers.config(text=warning_message)
-
-            break
+            continue
 
         #print(imagepath)
         imagename=ntpath.basename(imagepath)#take the name of the file from the path and save it
@@ -182,7 +179,7 @@ def create_window1(): #create the first pop up window
                     results_im.append(Average_size)
                     results_im.append(TH1)
                     #create the string with the output format
-                    results="Image ID: "+ str(results_im[0]) + "-- Cell count: " + str(results_im[1]) + " -- Average cell size: "+ str(results_im[2])+ "-- Threshold used: "+ str(results_im[3]) + "\n"
+                    results="Image ID: "+ str(results_im[0]) + "-- Object count: " + str(results_im[1]) + " -- Average object size: "+ str(results_im[2])+ "-- Threshold used: "+ str(results_im[3]) + "\n"
                     final_results1.append(results)  #append all the results-strings into final list
                     results_im.clear() #clear the list for the next round
                     entry.delete(0, tk.END)#empty the entry box
@@ -193,12 +190,17 @@ def create_window1(): #create the first pop up window
         #lbl_one_im.config(text=imagename)
         lbl_outp.config(text=results_output)
         
-    def Output(): #saves the output into a directory where you are working in
-        with open("Images_output_manual_TH.txt", "w") as outp:
-            print(final_results1)
-           # for line in final_results:
-            outp.write('\n'.join(final_results1))
-        lbl_info1.config(text="Output saved to: "+ directory + " !")
+    def Output(): #function for saving the results into a text file
+        name_of_file = "Images_output_manual_TH"
+        direcotry_path = filedialog.askdirectory()
+        
+        fullname = os.path.join(direcotry_path, name_of_file +".txt")         
+        
+        outp_file = open(fullname, "w")
+        
+        outp_file.write('\n'.join(final_results1))
+        outp_file.close()
+        lbl_info1.config(text="Output saved to: "+ direcotry_path + " as Images_output_manual_TH.txt")
 
     btn_stats_a = tk.Button(   #btn_stats_a used if chose option of applying
         #own threshold on GUI --- use the function ImageStats_a()
@@ -340,7 +342,7 @@ def create_window3():#create a pop up window for running ImageStats_b
                     results_im.append(Average_size)
                     results_im.append(TH)
                     #create the output format by adding the list's components into a string
-                    results="Image ID: "+ str(results_im[0]) + "-- Cell count: " + str(results_im[1]) + " -- Average cell size: "+ str(results_im[2])+ "-- Threshold used: "+ str(results_im[3]) + "\n"
+                    results="Image ID: "+ str(results_im[0]) + "-- Object count: " + str(results_im[1]) + " -- Average object size: "+ str(results_im[2])+ "-- Threshold used: "+ str(results_im[3]) + "\n"
                     final_results.append(results)  #append all the results-strings into final list
                     results_im.clear()#clear the temporary list
         #return(final_results)
@@ -350,10 +352,16 @@ def create_window3():#create a pop up window for running ImageStats_b
 
         lbl_outp.config(text=results_output2) #output the results to the GUI
     def Output(): #function for saving the results into a text file
-        with open("Images_output_otsu.txt", "w") as outp:
-            outp.write('\n'.join(final_results))
-        lbl_info.config(text="Output saved to: "+ directory + " !")
-
+        name_of_file = "Images_output_otsu"
+        direcotry_path = filedialog.askdirectory()
+        
+        fullname = os.path.join(direcotry_path, name_of_file +".txt")         
+        
+        outp_file = open(fullname, "w")
+        
+        outp_file.write('\n'.join(final_results))
+        outp_file.close()
+        lbl_info.config(text="Output saved to: "+ direcotry_path + " as " + name_of_file + ".txt")
 
     lbl_info=tk.Label(master=w3, text='')
     btn_stats_b = tk.Button(   #btn_stats_b used if chose option b) --- use of otsu's threshold
