@@ -1,16 +1,16 @@
 # BINP29_ImageAnalysisProject
-## Monofluor Readme
+# Monofluor Readme
 Python version: Python 3.7.6
 
-# Monofluor
+## Monofluor
 Monofluor is tool developed for python that counts the number of fluorescently tagged objects
 in a fluorescent image.
 
-# Installation
+## Installation
 Download the code and example data from github: https://github.com/Atte-Oskari-Rasanen/BINP29_ImageAnalysisProject
 Make sure that you have following packages installed: skimage, numpy and tkinter.
 
-# Usage
+## Usage
 From the command line the code can be run simply by: python Monofluor. Alternatively
 the program can be run by opening python.
 
