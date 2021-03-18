@@ -24,37 +24,63 @@ List of "non standard" modules:
     None.
 
 Procedure
-    
+    1. After importing the relevant packages, a tkinter main window is created, named and 
+    the outlook modified. 
+    2. The user selects "Please select an image directory" button from the GUI. This
+    tkinter button is connected to the function UploadAction. In this function the 
+    selected directory by the user is iterated over, only selecting the image files
+    which are defined as ending in .jpg. Subsequently a path version is created 
+    by taking the directory name (includes the path) along with the file name at hand. 
+    The file name is added as the key into an empty dictionary (images) along with the image
+    path as the value. The function outputs the number of image files foundand dsiplays them
+    using the label widget lbl_numbers. The images are displayed on the screen after the 
+    directory is entered.	
+    3. The label widget lbl_txt_expl explains how to select the images and proceed. When
+    proceeded, a create_window2 function is called, opening up a pop up window (w2). The window
+    is connected to the main window w and a frame is created linked to w2. The window shows
+    a label widget lbl_choice and two buttons based on which threshold is selected (Otsu vs own). 
+    A label widget lbl_stats is added into the frame. The stats will be displayed on this later. 
+    4. If btn_stats_otsu button is selected, then the button opens up a separate window by calling create_window3
+    which has a window (w3) connected to the main one. Inside this window a button widget to apply 
+    Otsu's threshold can be applied as well one to save the results. Otsu button runs Image_Stats_b
+    function which goes over each file, gets its name, grayscales it, transforms it into a numpy array
+    of pixel values and then creates a binary file using automatically calculated Otsu's threshold. 
+    The results are shown on the interface window 3 using a label widget lbl_outp. 
+    5. The results of Image_Stats_b can be saved using save the output button widget which calls
+    Output function, giving the user an option to select the output directory after which the 
+    results are saved as text file format into it. A label widget lbl_info tells the user where 
+    the file was saved. 
+    6. On window 2 if the btn_stats_own is selected, the widget call create_window1 is opened, creating
+    a pop up window (w1) connected to the main window. Three buttons appear. btn_stats_a connects to 
+    Image_stats_a function which calculates the statistics same way as Image_stats_b if the user
+    has entered a number into the entry widget of w1 called entry. Otherwise the code raises an error
+    message and asks for a valid input. lnl_outpTHs button connects to pre_imageStats_a function that 
+    calculates thresholds for images using Otsu's one. These can be used as a point of reference. 
+    btn_outp_a button calls for Output function which repeats the same procedure as the function
+    in window 3.      
 Usage
-    python Project.py regions.fna NE_Biolabs_Endonucleases.txt output_regions.txt
-    python Project.py testfile.fna NE_Biolabs_Endonucleases.txt output_testfile.txt
-
+    Open python and run the code. The GUI appears in a separate window. 
 Extra notes
-    The example output files where generated using the enzyme BfaI from the NE_Biolabs_Endonucleases.txt
+
 '''
 
-@author: atter
 """
 
 
 import tkinter as tk
 from tkinter import filedialog
 import numpy as np
-import pandas as pd
 from skimage.io import imread, imshow
 from skimage.color import rgb2gray
 # import matplotlib.pyplot as plt
-from skimage import measure, filters, morphology
-from skimage import measure
+from skimage import measure, filters
 import os
-# from win32com.client import Dispatch
 import ntpath
 # import re
-w = tk.Tk()
-w.title("Fluorescent image analyser")
-# style = tk.Style()
-main_title=tk.Label(master=w, text="MonoFluor", bg="yellow", fg="purple")
-main_title.config(font=("Courier", 45))
+w = tk.Tk() #create main window
+w.title("Fluorescent image analyser") #give the window a title
+main_title=tk.Label(master=w, text="MonoFluor", bg="yellow", fg="purple") #add a main text with colours
+main_title.config(font=("Courier", 45)) #change main text size
 
 def UploadAction(event=None): #function for uploading the images from selected directory
 # dict with imageid as key and path and otsu as value
@@ -85,7 +111,7 @@ def UploadAction(event=None): #function for uploading the images from selected d
         which_im.insert(tk.END, imagefile) #select the images you want to process further
         TH = filters.threshold_otsu(cells)  #apply threshold, save it
 
-        #append everything into a list
+        #append everything into a dictionary
         Paths_and_TH.append(imagepath)
         Paths_and_TH.append(TH)
         images[imagename]=Paths_and_TH
@@ -229,7 +255,8 @@ def create_window1(): #create the first pop up window
 
     lbl_info1=tk.Label(master=w1, text="")
 
-    #Grids for the widgets
+     #Grids for formatting the widgets
+
     btn_stats_a.grid(row=0, column=0)
     lbl_outp.grid(row=1, column=0)
    # lbl_one_im.grid(row=2, column=0)
@@ -241,19 +268,6 @@ def create_window1(): #create the first pop up window
     lbl_outpTHs.grid(row=1, column= 1)
     btn_outp_a.grid(row=4, column=0)
 
-    # btn_stats_a.pack()
-    # recommend_TH.pack()
-    
-    # lbl_outp.pack()
-    # lbl_outpTHs.pack()
-    
-    # lbl_one_im.pack()
-    # entry.pack()
-    
-    # btn_outp_a.pack()
-    # lbl_outp_a.pack()
-    
-    # lbl_info1.pack()
     w1.mainloop()
 
 
@@ -287,17 +301,12 @@ command=create_window1)
         bg="green",
         fg="black",
         command=create_window3)
-    #Grids
+    #Grids for formatting the widgets
     lbl_choice.grid(row=4, column=0)
     btn_stats_own.grid(row=5, column=0)
     btn_stats_otsu.grid(row=6, column=0)
     lbl_stats.grid(row=7, column=0)
 
-
-    # btn_stats_own.pack()
-    # btn_stats_otsu.pack()
-    # lbl_choice
-    # lbl_stats.pack()
     w2.mainloop()
 
 def create_window3():#create a pop up window for running ImageStats_b
@@ -377,18 +386,14 @@ def create_window3():#create a pop up window for running ImageStats_b
         height=3, bg="yellow", fg="black",
  command=Output)
     lbl_outp = tk.Label(master=w3, text="")
-    ###Grids
+    
+    #Grids for formatting the widgets
     btn_stats_b.grid(row=0, column=0)
     btn_outp_b.grid(row=3,column=0)
     lbl_outp.grid(row=2, column=0)
     lbl_info.grid(row=4, column=0)
-    # btn_stats_b.pack()
-    # btn_outp_b.pack()
-    # lbl_outp.pack() #####
-    # lbl_info.pack()
     w3.mainloop()
 
-# theframe=tk.Frame(w,width=400,height=300,bd=2) ####
 
 
 btn1 = tk.Button(master=w, text='Please select an image directory', command=UploadAction)
@@ -401,9 +406,9 @@ which_im.bind("<Button-3>", create_window2)   #right button click to proceed
 #cellranges=tk.Listbox(master=w)    ########
 lbl_txt2 = tk.Label(master=w, text="Please select threshold:")
 
-# lbl_txt2.pack()
 
-###Grids
+#Grids for formatting the widgets
+
 main_title.grid(row=0, column=0)
 
 lbl_txt_expl.grid(row=1, column=0, pady=2)
@@ -412,13 +417,5 @@ which_im.grid(row=3, column = 0, pady = 2)
 lbl_txt.grid(row=4, column = 0, pady = 2) 
 lbl_numbers.grid(row=5, column= 0)
 
-# theframe.pack() #####
-# btn1.pack()
-# lbl_txt2.pack()
-
-# lbl_txt_expl.pack()
-# lbl_txt.pack()
-# lbl_numbers.pack()
-# which_im.pack()  ########
 
 w.mainloop()
