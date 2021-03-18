@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Mar 15 11:19:44 2021
-Title: Project.py
+Title: MonoFluor.py
 Date: 2020-20-03
 Author: Atte Oskari Räsänen
 
