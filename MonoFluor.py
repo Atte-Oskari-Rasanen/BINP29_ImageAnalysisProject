@@ -17,8 +17,6 @@ List of functions:
     def Output():
     def ImageStats_b():
     
-    
-
 List of "non standard" modules:
     None.
 
