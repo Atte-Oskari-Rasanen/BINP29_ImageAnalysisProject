@@ -5,7 +5,7 @@ Scikit image (ver. 0.16.2)
 Tkinter (ver. 8.6.8)
 
 ## Monofluor
-Monofluor is tool developed for python that automatically counts the selected fluorescently
+Monofluor (Monofluor.py) is a tool developed for python that automatically counts the selected fluorescently
 tagged objects in a fluorescent image and calculates average size of the objects.
 
 ## Installation
