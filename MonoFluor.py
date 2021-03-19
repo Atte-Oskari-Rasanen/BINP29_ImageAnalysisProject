@@ -28,7 +28,7 @@ Procedure
     2. The user selects "Please select an image directory" button from the GUI. This
     tkinter button is connected to the function UploadAction. In this function the 
     selected directory by the user is iterated over, only selecting the image files
-    which are defined as ending in .jpg. Subsequently a path version is created 
+    which are defined as ending in .tif. Subsequently a path version is created 
     by taking the directory name (includes the path) along with the file name at hand. 
     The file name is added as the key into an empty dictionary (images) along with the image
     path as the value. The function outputs the number of image files foundand dsiplays them
@@ -98,7 +98,7 @@ def UploadAction(event=None): #function for uploading the images from selected d
     for imagefile in os.listdir(directory):  #to go through files in the specific directory
         #print(os.listdir(directory))
         imagepath=directory + "/" + imagefile   #create first of dic values, i.e the path
-        if not imagefile.endswith('.tif'): #exclude files not ending in .jpg
+        if not imagefile.endswith('.tif'): #exclude files not ending in .tif
             continue
         #print(imagepath)
         imagename=ntpath.basename(imagepath)#take the name of the file from the path and save it
