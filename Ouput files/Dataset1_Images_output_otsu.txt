@@ -1,0 +1,39 @@
+Image ID: 10GRAY.tif-- Object count: 280 -- Average object size: 14.176590581717452-- Threshold used: 114
+
+Image ID: 11GRAY.tif-- Object count: 279 -- Average object size: 14.737301939058172-- Threshold used: 114
+
+Image ID: 12GRAY.tif-- Object count: 285 -- Average object size: 14.894272576177285-- Threshold used: 114
+
+Image ID: 13GRAY.tif-- Object count: 286 -- Average object size: 15.129402770083102-- Threshold used: 114
+
+Image ID: 14GRAY.tif-- Object count: 280 -- Average object size: 13.718113019390582-- Threshold used: 113
+
+Image ID: 15GRAY.tif-- Object count: 283 -- Average object size: 14.611208864265928-- Threshold used: 116
+
+Image ID: 16GRAY.tif-- Object count: 277 -- Average object size: 14.273094736842106-- Threshold used: 115
+
+Image ID: 17GRAY.tif-- Object count: 283 -- Average object size: 14.582432132963989-- Threshold used: 112
+
+Image ID: 18GRAY.tif-- Object count: 280 -- Average object size: 13.926253739612187-- Threshold used: 114
+
+Image ID: 19GRAY.tif-- Object count: 287 -- Average object size: 14.110352354570637-- Threshold used: 114
+
+Image ID: 1GRAY.tif-- Object count: 283 -- Average object size: 14.496547368421053-- Threshold used: 113
+
+Image ID: 20GRAY.tif-- Object count: 283 -- Average object size: 14.744560664819945-- Threshold used: 113
+
+Image ID: 2GRAY.tif-- Object count: 289 -- Average object size: 14.205161218836565-- Threshold used: 117
+
+Image ID: 3GRAY.tif-- Object count: 286 -- Average object size: 14.57716675900277-- Threshold used: 115
+
+Image ID: 4GRAY.tif-- Object count: 281 -- Average object size: 14.486263711911358-- Threshold used: 115
+
+Image ID: 5GRAY.tif-- Object count: 290 -- Average object size: 14.509163434903048-- Threshold used: 116
+
+Image ID: 6GRAY.tif-- Object count: 287 -- Average object size: 15.087296398891967-- Threshold used: 116
+
+Image ID: 7GRAY.tif-- Object count: 277 -- Average object size: 14.833469252077562-- Threshold used: 114
+
+Image ID: 8GRAY.tif-- Object count: 288 -- Average object size: 14.566872022160664-- Threshold used: 114
+
+Image ID: 9GRAY.tif-- Object count: 281 -- Average object size: 14.456356786703601-- Threshold used: 113

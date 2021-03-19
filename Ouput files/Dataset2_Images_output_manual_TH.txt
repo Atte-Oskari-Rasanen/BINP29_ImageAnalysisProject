@@ -1,0 +1,63 @@
+Image ID: normal_10.tif-- Object count: 33 -- Average object size: 4.340354156494141-- Threshold used: 80.0
+
+Image ID: normal_11.tif-- Object count: 127 -- Average object size: 14.843498992919923-- Threshold used: 80.0
+
+Image ID: normal_12.tif-- Object count: 412 -- Average object size: 37.59757308959961-- Threshold used: 80.0
+
+Image ID: normal_13.tif-- Object count: 36 -- Average object size: 2.5367782592773436-- Threshold used: 80.0
+
+Image ID: normal_14.tif-- Object count: 954 -- Average object size: 18.40158615112305-- Threshold used: 80.0
+
+Image ID: normal_15.tif-- Object count: 55 -- Average object size: 5.195722961425782-- Threshold used: 80.0
+
+Image ID: normal_17.tif-- Object count: 43 -- Average object size: 2.8986442565917967-- Threshold used: 80.0
+
+Image ID: normal_2.tif-- Object count: 94 -- Average object size: 8.211277770996094-- Threshold used: 80.0
+
+Image ID: normal_20.tif-- Object count: 322 -- Average object size: 74.12994918823242-- Threshold used: 80.0
+
+Image ID: normal_21.tif-- Object count: 153 -- Average object size: 20.831736755371093-- Threshold used: 80.0
+
+Image ID: normal_22.tif-- Object count: 378 -- Average object size: 53.46668548583985-- Threshold used: 80.0
+
+Image ID: normal_23.tif-- Object count: 37 -- Average object size: 4.8843994140625-- Threshold used: 80.0
+
+Image ID: normal_24.tif-- Object count: 723 -- Average object size: 137.33486862182616-- Threshold used: 80.0
+
+Image ID: normal_26.tif-- Object count: 42 -- Average object size: 6.9896797180175785-- Threshold used: 80.0
+
+Image ID: normal_27.tif-- Object count: 207 -- Average object size: 22.73178482055664-- Threshold used: 80.0
+
+Image ID: normal_28.tif-- Object count: 624 -- Average object size: 118.25605239868165-- Threshold used: 80.0
+
+Image ID: normal_29.tif-- Object count: 52 -- Average object size: 4.266742706298828-- Threshold used: 80.0
+
+Image ID: normal_3.tif-- Object count: 30 -- Average object size: 3.749733734130859-- Threshold used: 80.0
+
+Image ID: normal_30.tif-- Object count: 97 -- Average object size: 17.62989959716797-- Threshold used: 80.0
+
+Image ID: normal_31.tif-- Object count: 134 -- Average object size: 13.894280242919923-- Threshold used: 80.0
+
+Image ID: normal_32.tif-- Object count: 167 -- Average object size: 26.382658386230467-- Threshold used: 80.0
+
+Image ID: normal_34.tif-- Object count: 800 -- Average object size: 50.63268683938419-- Threshold used: 80.0
+
+Image ID: normal_35.tif-- Object count: 130 -- Average object size: 7.522158633961397-- Threshold used: 80.0
+
+Image ID: normal_36.tif-- Object count: 65 -- Average object size: 5.061964326746324-- Threshold used: 80.0
+
+Image ID: normal_37.tif-- Object count: 93 -- Average object size: 6.9240155388327205-- Threshold used: 80.0
+
+Image ID: normal_38.tif-- Object count: 283 -- Average object size: 4.436367618336397-- Threshold used: 80.0
+
+Image ID: normal_39.tif-- Object count: 247 -- Average object size: 4.090513700597427-- Threshold used: 80.0
+
+Image ID: normal_4.tif-- Object count: 39 -- Average object size: 2.2848587036132812-- Threshold used: 80.0
+
+Image ID: normal_40.tif-- Object count: 210 -- Average object size: 3.176110121783088-- Threshold used: 80.0
+
+Image ID: normal_5.tif-- Object count: 1104 -- Average object size: 85.84885864257812-- Threshold used: 80.0
+
+Image ID: normal_6.tif-- Object count: 98 -- Average object size: 26.014061737060548-- Threshold used: 80.0
+
+Image ID: normal_8.tif-- Object count: 566 -- Average object size: 107.10839538574218-- Threshold used: 80.0
