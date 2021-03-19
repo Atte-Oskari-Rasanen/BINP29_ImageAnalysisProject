@@ -15,7 +15,7 @@ Anaconda, these packages should be readily installed. Anaconda can be installed 
 
 ## Usage
 Open python and run the program. Select the directory containing images by clicking 
-on select image directory. Make sure that no other than .jpg files are found in 
+on select image directory. Make sure that no other than .tif files are found in 
 the directory or else the program will give an error. After this, the number of
 files and their names are presented. Select the ones you want to analyse using 
 left mouse click and after you are done selecting, click the right mouse button. 
