@@ -1,7 +1,0 @@
-Image ID: a375.jpg-- Object count: 79 -- Average object size: 9.566716-- Threshold used: 0.38021954656862744
-
-Image ID: Hela.jpg-- Object count: 67 -- Average object size: 4.01475-- Threshold used: 0.14485505131740198
-
-Image ID: OVCAR.jpg-- Object count: 504 -- Average object size: 22.000809643756746-- Threshold used: 0.12223678385416667
-
-Image ID: SKOV.jpg-- Object count: 154 -- Average object size: 5.438741550152263-- Threshold used: 0.07495547794117646
