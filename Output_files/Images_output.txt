@@ -1,9 +1,0 @@
-Image ID: a375.jpg-- Cell count: 79 -- Average cell size: 9.566716-- Threshold used: 0.38021954656862744
-
-Image ID: Hela.jpg-- Cell count: 67 -- Average cell size: 4.01475-- Threshold used: 0.14485505131740198
-
-Image ID: OVCAR.jpg-- Cell count: 504 -- Average cell size: 22.000809643756746-- Threshold used: 0.12223678385416667
-
-Image ID: SKOV.jpg-- Cell count: 154 -- Average cell size: 5.438741550152263-- Threshold used: 0.07495547794117646
-
-Image ID: ZDB-IMAGE-090112-5_medium.jpg-- Cell count: 13 -- Average cell size: 0.12440139130434782-- Threshold used: 0.439453125
