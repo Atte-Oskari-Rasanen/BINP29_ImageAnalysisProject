@@ -17,6 +17,8 @@ List of functions:
     def Output():
     def ImageStats_b():
     
+    
+
 List of "non standard" modules:
     None.
 
@@ -96,9 +98,8 @@ def UploadAction(event=None): #function for uploading the images from selected d
     for imagefile in os.listdir(directory):  #to go through files in the specific directory
         #print(os.listdir(directory))
         imagepath=directory + "/" + imagefile   #create first of dic values, i.e the path
-        if not imagefile.endswith('.jpg'): #exclude files not ending in .jpg
+        if not imagefile.endswith('.tif'): #exclude files not ending in .jpg
             continue
-
         #print(imagepath)
         imagename=ntpath.basename(imagepath)#take the name of the file from the path and save it
 
